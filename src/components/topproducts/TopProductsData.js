@@ -1,0 +1,156 @@
+export const NewArrivals = [
+  {
+    id: 1,
+    itemName:"Relaxed Short full Sleeve T-Shirt",
+    category: "Clothes",
+    price:"$45.00",
+    oldPrice:"$12.00",
+    img: "./images/products/clothes-1.jpg",
+  },
+  {
+    id: 2,
+    itemName:"Girls pnk Embro design Top",
+    category: "Clothes",
+    price:"$61.00",
+    oldPrice:"$9.00",
+    img: "./images/products/clothes-2.jpg",
+  },
+  {
+    id: 3,
+    itemName:"Black Floral Wrap Midi Skirt",
+    category: "Clothes",
+    price:"$76.00",
+    oldPrice:"$25.00",
+    img: "./images/products/clothes-3.jpg",
+  },
+  {
+    id: 4,    
+    itemName:"Pure Garment Dyed Cotton Shirt",
+    category: "Mens Fashion",
+    price:"$68.00",
+    oldPrice:"$31.00",
+    img: "./images/products/shirt-1.jpg",
+  },
+  {
+    id: 5,    
+    itemName:"MEN Yarn Fleece Full-Zip Jacket",
+    category: "Winter wear",
+    price:"$61.00",
+    oldPrice:"$11.00",
+    img: "./images/products/jacket-5.jpg",
+  },
+  
+  {
+    id: 6,  
+    itemName:"Mens Winter Leathers Jackets",
+    category: "Winter wear",
+    price:"$32.00",
+    oldPrice:"$20.00",
+    img: "./images/products/jacket-1.jpg",
+  },
+
+  {
+    id: 7,
+    itemName:"Mens Winter Leathers Jackets",
+    category: "Jackets",
+    price:"$50.00",
+    oldPrice:"$25.00",
+    img: "./images/products/jacket-3.jpg",
+  },
+  {
+    id: 8,
+    itemName:"Better Basics French Terry Sweatshorts",
+    category: "Shorts",
+    price:"$20.00",
+    oldPrice:"$10.00",
+    img: "./images/products/shorts-1.jpg",
+  },
+  
+]
+export const Trending = [
+  {
+    id: 1,    
+    itemName:"Running & Trekking Shoes - White",
+    category: "Sports",
+    price:"$49.00",
+    oldPrice:"$15.00",
+    img: "./images/products/sports-1.jpg",
+  },
+  {
+    id: 2,
+    itemName:"Trekking & Running Shoes - black",
+    category: "Clothes",
+    price:"$78.00",
+    oldPrice:"$36.00",
+    img: "./images/products/sports-2.jpg",
+  },
+  {
+    id: 3,
+    itemName:"Womens Party Wear Shoes",
+    category: "Party wear",
+    price:"$94.00",
+    oldPrice:"$42.00",
+    img: "./images/products/party-wear-1.jpg",
+  },
+  {
+    id: 4,
+    itemName:"Sports Claw Women's Shoes",
+    category: "Sports",
+    price:"$54.00",
+    oldPrice:"$65.00",
+    img: "./images/products/sports-3.jpg",
+  },
+  {
+    id: 5,
+    itemName:"MEN Yarn Fleece Full-Zip Jacket",
+    category: "Winter wear",
+    price:"$61.00",
+    oldPrice:"$11.00",
+    img: "./images/products/jacket-5.jpg",
+  },
+  
+]
+
+export const TopRated = [
+  {
+    id: 1,    
+    itemName:"Pocket Watch Leather Pouch",
+    category: "Watches",
+    price:"$50.00",
+    oldPrice:"$34.00",
+    img: "./images/products/watch-3.jpg",
+  },
+  {
+    id: 2,
+    itemName:"Silver Deer Heart Necklace",
+    category: "Jewellery",
+    price:"$84.00",
+    oldPrice:"$30.00",
+    img: "./images/products/jewellery-3.jpg",
+  },
+  {
+    id: 3,
+    itemName:"Titan 100 Ml Womens Perfume",
+    category: "Perfume",
+    price:"$42.00",
+    oldPrice:"$10.00",
+    img: "./images/products/perfume.jpg",
+  },
+  {
+    id: 4,
+    itemName:"Men's Leather Reversible Belt",
+    category: "Belt",
+    price:"$24.00",
+    oldPrice:"$10.00",
+    img: "./images/products/belt.jpg",
+  },
+  {
+    id: 5,
+    itemName:"Platinum Zircon Classic Ring",
+    category: "jewellery",
+    price:"$62.00",
+    oldPrice:"$65.00",
+    img: "./images/products/jewellery-2.jpg",
+  },
+]
+export default {NewArrivals,Trending,TopRated}

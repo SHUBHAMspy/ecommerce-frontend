@@ -1,0 +1,58 @@
+.pages{
+  display: flex;
+  justify-content: center;
+}
+
+.chip:Hover{
+  background-color: #1976d2 ;
+  color: white;
+}
+/* .paginationBttns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+} */
+
+.paginationBttns {
+  padding: 8px;
+  
+  
+  margin: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--salmon-pink);
+  color: var(--salmon-pink);
+  cursor: pointer;
+}
+
+.paginationBttns:active  {
+  color: white;
+  background-color: var(--salmon-pink);
+}
+/* .paginationBttns a {
+  padding: 8px;
+  
+  text-align: center;
+  margin: 10px;
+  height: 100%;
+  width: 80%;
+  border-radius: 50%;
+  border: 1px solid var(--salmon-pink);
+  color: var(--salmon-pink);
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: var(--eerie-black);
+}
+
+
+
+.paginationDisabled a {
+  color: var(--eerie-black);
+  background-color: var(--cultured);
+} */

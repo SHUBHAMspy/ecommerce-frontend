@@ -1,13 +1,30 @@
+import {
+  ApolloClient, ApolloProvider, InMemoryCache
+} from "@apollo/client";
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter } from "react-router-dom";
+import { CartProvider } from "react-use-cart";
 import App from './App';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { BACKEND_URL } from "./utils/helpers";
+
+const client = new ApolloClient({
+  uri: `${BACKEND_URL}/graphql`,
+  cache: new InMemoryCache()
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <CartProvider>
+      <BrowserRouter>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </BrowserRouter>
+    </CartProvider>
   </React.StrictMode>
 );
 

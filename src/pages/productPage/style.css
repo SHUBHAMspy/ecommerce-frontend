@@ -19,7 +19,7 @@
   transition: .3s ease-in-out;
 }
 .product-detail-image:hover{
-  background-color: #f02d34;
+  background-color: var(--salmon-pink);
 
 }
 .small-images-container{
@@ -42,7 +42,7 @@
 }
 
 .selected-image{
-  background-color:#f02d34;
+  background-color:var(--salmon-pink);
 }
 .reviews{
   display: flex;
@@ -152,7 +152,7 @@ padding: 6px ;
 }
 .quantity-desc .minus{
   
-  color: #f02d34;
+  color: var(--salmon-pink);
 }
 .quantity-desc .num{
   border-right: 1px solid gray;

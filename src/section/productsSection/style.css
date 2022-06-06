@@ -14,7 +14,7 @@
 
 .shop-cta:hover{
   background: var(--eerie-black);
-  translate: y(50);
+  transform: translateX(5px);
 }
 
 @media (min-width: 1024px) {

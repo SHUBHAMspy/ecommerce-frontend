@@ -1,6 +1,7 @@
 .pages{
   display: flex;
   justify-content: center;
+  margin-bottom: 15px;
 }
 
 .chip:Hover{
@@ -38,6 +39,11 @@
   color: var(--spanish-gray);
   border: 1px solid var(--spanish-gray);
 
+}
+.disable:hover{
+  background-color: var(--cultured);
+  color: var(--spanish-gray);
+  pointer-events: none;
 }
 /* .paginationBttns a {
   padding: 8px;

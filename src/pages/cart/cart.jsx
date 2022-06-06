@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useNavigate } from "react-router"
 import { useCart } from "react-use-cart"
 import { BACKEND_URL } from "../../utils/helpers"
 import "./style.css"
@@ -6,7 +7,7 @@ import "./style.css"
 const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   const [checkout,setCheckout] = useState(false)
   const {isEmpty,items,cartTotal,removeItem,addItem,updateItemQuantity} = useCart()
-  
+  const navigate = useNavigate();
   // const totalPrice = CartItem.reduce((price, item) => price + item.qty * item.price, 0)
 
  
@@ -17,7 +18,15 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
           
 
           <div className='cart-details'>
-            {isEmpty && <h1 className='no-items product'>No Items are add in Cart</h1>}
+            {isEmpty && 
+              ( 
+                <div className= 'no-items' >
+                  <h1 className='product'>No Items are added in Cart</h1>
+                  <img src="./images/emptycart.png" alt="Noitems" />
+                  <button className='shopnow-cta' onClick={() => navigate('/products')}> &lt; Shop Now</button>
+                </div>
+              )
+            }
 
             {items.map((item) => {
               return (
@@ -57,16 +66,21 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
             })}
           </div>
 
-          <div className='cart-total product'>
-            <h2>Cart Summary</h2>
-            <div className='total-flex'>
-              <h4>Total Price :</h4>
-              <h3>${cartTotal}.00</h3>
-            </div>
-            
-            <button type="button" className="buy-now" >Buy Now</button>
-            
-          </div>
+          {
+            !isEmpty &&
+              (
+                <div className='cart-total product'>
+                  <h2>Cart Summary</h2>
+                  <div className='total-flex'>
+                    <h4>Total Price :</h4>
+                    <h3>${cartTotal}.00</h3>
+                  </div>
+                  
+                  <button type="button" className="buy-now" >Buy Now</button>
+                  
+                </div>
+              )
+          }
         </div>
       </section>
     </>

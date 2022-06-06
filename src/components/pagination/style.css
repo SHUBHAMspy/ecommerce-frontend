@@ -4,7 +4,7 @@
 }
 
 .chip:Hover{
-  background-color: #1976d2 ;
+  background-color: var(--eerie-black) ;
   color: white;
 }
 /* .paginationBttns {
@@ -18,8 +18,8 @@
 .paginationBttns {
   padding: 8px;
   
-  
-  margin: 10px;
+  text-align: center;
+  margin: 5px;
   height: 40px;
   width: 40px;
   border-radius: 50%;
@@ -28,9 +28,16 @@
   cursor: pointer;
 }
 
-.paginationBttns:active  {
+.activePage  {
   color: white;
-  background-color: var(--salmon-pink);
+  background: var(--salmon-pink);
+}
+
+.disable {
+  background-color: var(--cultured);
+  color: var(--spanish-gray);
+  border: 1px solid var(--spanish-gray);
+
 }
 /* .paginationBttns a {
   padding: 8px;

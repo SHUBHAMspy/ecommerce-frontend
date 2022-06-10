@@ -22,7 +22,7 @@ const Testimonial = () => {
         <Slider {...settings}>
           {
             testimonialData.map((testimonial,index) => (
-              <div >
+              <div key={index}>
                 <img src={testimonial.img} alt={testimonial.author} className="testimonial-banner" width="80" height="80" />
                 <p className="testimonial-name">{testimonial.author}</p>
                 <p className="testimonial-title">{testimonial.bio}</p>

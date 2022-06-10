@@ -98,7 +98,7 @@ const Product = () => {
               reviews.data.map(({attributes,id}) => {
                 let ratings = [0,0,0,0,0].fill(1,0,attributes.review)
                 return (
-                  <div className='display-reviews'key={id}>
+                  <div className='display-reviews' key={id}>
                     <div className='user-icon'><ion-icon name="person-outline" className='action-button'></ion-icon></div>
                     
                     <div className='comment-box'>
@@ -109,7 +109,7 @@ const Product = () => {
                         ratings.map((value,index) => (
                           value  
                           ? <ion-icon name="star" key={index}></ion-icon> 
-                          : <ion-icon name="star-outline" ></ion-icon> 
+                          : <ion-icon name="star-outline" key={index} ></ion-icon> 
                           ))
                         }
                       </div>

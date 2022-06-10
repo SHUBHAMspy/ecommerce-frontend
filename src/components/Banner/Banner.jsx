@@ -26,9 +26,9 @@ const Banner = () => {
           <Slider {...settings} >
             {
               BannerData.map((data,index) => (
-                <div className="slider-container">
+                <div className="slider-container" key={data.id}>
 
-                  <div className="slider-item" key={data.id}>
+                  <div className="slider-item" >
                     <img src={data.img} alt={data.heading} className="banner-img"/>
                     <div className="banner-content">
                       <p className="banner-subtitle">{data.title}</p>
@@ -36,7 +36,7 @@ const Banner = () => {
                       <h2 className="banner-title">{data.heading}</h2>
 
                       <p className="banner-text">
-                        starting at &dollar; <b>{data.price}</b>.00
+                        starting at $ <b>{data.price}</b>.00
                       </p>
 
                       <a href="#" className="banner-btn">Shop now</a>

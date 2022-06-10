@@ -1,7 +1,8 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { FooterData } from './FooterData'
-import './style.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FooterData } from './FooterData';
+import './style.css';
+
 const Footer = () => {
   return (
     <footer>
@@ -153,7 +154,7 @@ const Footer = () => {
               <ion-icon name="location-outline"></ion-icon>
             </div>
 
-            <address className="content">
+            <address className="address">
               L-789
               Janakpuri, New Delhi(ND), 78945, INDIA
             </address>

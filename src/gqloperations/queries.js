@@ -60,6 +60,17 @@ export const getProduct = gql`
               }
             }
           }
+          reviews {
+            data {
+              id
+              attributes {
+                reviewerName
+                comment
+                review
+                createdAt
+              }
+            }
+          }
         }
         
       }

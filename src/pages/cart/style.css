@@ -229,7 +229,10 @@
     font-weight: var(--weight-700);
     font-size: var(--fs-6);
   }
-
+  /* .cart-total{
+    display: flex;
+    flex-direction: column;
+  } */
   .cart-items .cart-total {
     width: 90%;
     margin-top: 30px;

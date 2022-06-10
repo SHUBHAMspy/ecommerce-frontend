@@ -94,7 +94,7 @@ footer {
 .footer-nav-item { padding: 3px 0; }
 
 .footer-nav-link,
-.footer-nav-item .content {
+.footer-nav-item .address {
   width: max-content;
   color: var(--sonic-silver);
   font-size: var(--fs-7);
@@ -110,7 +110,7 @@ footer {
   gap: 10px;
 }
 
-.footer-nav-item .content {
+.footer-nav-item .address {
   font-style: normal;
   margin-bottom: 5px;
 }

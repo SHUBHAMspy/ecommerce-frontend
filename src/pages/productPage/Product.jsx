@@ -2,11 +2,13 @@ import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useCart } from 'react-use-cart';
+import ReviewPopup from '../../components/reviewPopup/ReviewPopup';
 import { getProduct } from '../../gqloperations/queries';
 import { BACKEND_URL } from '../../utils/helpers';
 import './style.css';
 
 const Product = () => {
+  const [open, setOpen] = useState(false); 
   const [index, setIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const {id} = useParams();
@@ -21,7 +23,9 @@ const Product = () => {
   if(data) console.log(data)
 
   
-  const {name,price,description,images} = data.product.data.attributes;
+  const {name,price,description,images,reviews} = data.product.data.attributes;
+  console.log(reviews);
+  console.log(images);
   const addToCart = () => {
     addItem({
       id,
@@ -32,10 +36,11 @@ const Product = () => {
       quantity
     })
   }
+  
   return (
-    
+    <>
       <div className="product-detail-container">
-        <div >
+        <div className='product-images'>
           <div className="image-container">
             <img src={BACKEND_URL + images.data[index].attributes.url} className="product-detail-image" />
           </div>
@@ -83,7 +88,43 @@ const Product = () => {
           
         </div>
       </div>
-    
+
+      <div className='product-review container'>
+        <h1>Reviews</h1>
+        <button className='add-review' onClick={() => setOpen(true)}>Add a Review</button>
+        {reviews.data.length ? (
+          <>
+            {
+              reviews.data.map(({attributes,id}) => {
+                let ratings = [0,0,0,0,0].fill(1,0,attributes.review)
+                return (
+                  <div className='display-reviews'key={id}>
+                    <div className='user-icon'><ion-icon name="person-outline" className='action-button'></ion-icon></div>
+                    
+                    <div className='comment-box'>
+                      <p className='reviewer'>{ `${attributes.reviewerName}(Customer)`}</p>
+                      <div className='ratings'>
+                        { 
+                        
+                        ratings.map((value,index) => (
+                          value  
+                          ? <ion-icon name="star" key={index}></ion-icon> 
+                          : <ion-icon name="star-outline" ></ion-icon> 
+                          ))
+                        }
+                      </div>
+                      <b>{ attributes.comment} </b>
+                    </div>
+                  </div>
+                )
+              })
+            }
+          </>)
+          : <p className='no-reviews'>No reviews for this product</p>
+        }  
+      </div>
+      {open && <ReviewPopup setOpen={setOpen} productId={id}/>}
+    </>
   )
 }
 

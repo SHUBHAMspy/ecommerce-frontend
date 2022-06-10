@@ -45,27 +45,3 @@
   color: var(--spanish-gray);
   pointer-events: none;
 }
-/* .paginationBttns a {
-  padding: 8px;
-  
-  text-align: center;
-  margin: 10px;
-  height: 100%;
-  width: 80%;
-  border-radius: 50%;
-  border: 1px solid var(--salmon-pink);
-  color: var(--salmon-pink);
-  cursor: pointer;
-}
-
-.paginationBttns a:hover {
-  color: white;
-  background-color: var(--eerie-black);
-}
-
-
-
-.paginationDisabled a {
-  color: var(--eerie-black);
-  background-color: var(--cultured);
-} */

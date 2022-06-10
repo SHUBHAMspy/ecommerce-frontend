@@ -24,3 +24,16 @@ export const signUpUser = gql`
       }
     }
 `
+export const addReview = gql`
+  mutation CreateReview($data: ReviewInput!) {
+    createReview(data: $data) {
+      data {
+        attributes {
+          reviewerName
+          comment
+          review
+        }
+      }
+    }
+  }
+`

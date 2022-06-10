@@ -10,8 +10,19 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BACKEND_URL } from "./utils/helpers";
 
+// const authLink = setContext(async(request,{headers}) => {
+//   const token = JSON.parse(localStorage.getItem("credentials"))?.jwt;
+  
+//   return {
+//     ...headers,
+//     headers:{
+//       Authorization: token ? `Bearer ${token}` : null
+//     }
+//   }
+// })
 const client = new ApolloClient({
   uri: `${BACKEND_URL}/graphql`,
+  //link: from([authLink]),
   cache: new InMemoryCache()
 });
 

@@ -1,12 +1,14 @@
 import { useQuery } from '@apollo/client';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from 'react-use-cart';
 import { getAllProducts } from '../../gqloperations/queries';
 import { BACKEND_URL } from '../../utils/helpers';
 import './style.css';
 
 const Products = ({currentPage,getPageCount}) => {
   //const [page,setPage] = useState(1)
+  const {addItem} = useCart();
   const {loading,error,data,refetch} = useQuery(getAllProducts,{
     variables:{
       "pagination": {
@@ -32,16 +34,24 @@ const Products = ({currentPage,getPageCount}) => {
     
   }
   
-  if(loading) return <h1>Loading Please wait...</h1>
+  if(loading) return <h1 className='loading-style'>Loading Please wait...</h1>
   if(error) console.log(error);
   
-  if(!loading) {
-    givePageCount()
+  if(!loading) givePageCount()
     
-  }
+  
   console.log(data);
   //console.log(data.products.meta.pagination.pageCount);
+  const addToCart = (id,name,description,price,images) => {
   
+    addItem({
+      id,
+      name,
+      description,
+      price,
+      img: images.data[0].attributes.url,
+    })
+  }
   
   return (
     <div className="product-main">
@@ -63,7 +73,13 @@ const Products = ({currentPage,getPageCount}) => {
                   <button className="btn-action">
                     <ion-icon name="repeat-outline"></ion-icon>
                   </button>
-                  <button className="btn-action">
+                  <button 
+                    className="btn-action"
+                    onClick={() => {
+                      const {name,price,description,images} = attributes;
+                      addToCart(id,name,price,description,images);
+                    }}
+                  >
                     <ion-icon name="bag-add-outline"></ion-icon>
                   </button>
                 </div>
@@ -92,7 +108,6 @@ const Products = ({currentPage,getPageCount}) => {
         }
 
       </div>
-      
     </div>
   )
 }

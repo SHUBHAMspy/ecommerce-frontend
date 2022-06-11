@@ -72,7 +72,7 @@ const SearchBar = () => {
 
         <div className="header-user-actions">
 
-          <button className="action-btn">
+          <button className="action-btn" style={{fontSize:"32px"}} >
             {JSON.parse(localStorage.getItem("credentials"))?.jwt 
               ?(
                 <>
@@ -88,17 +88,14 @@ const SearchBar = () => {
             <span className="count">0</span>
           </button>
 
-          <button className="action-btn">
-            <Link to={'/cart'}>
+          <Link to={'/cart'}>
+            <button className="action-btn">
               <ion-icon name="bag-handle-outline"></ion-icon>
               <span className="count">{totalItems}</span>
-            </Link>
-          </button>
-
+            </button>
+          </Link>
         </div>
-
       </div>
-
     </div>
   )
 }

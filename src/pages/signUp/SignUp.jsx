@@ -93,7 +93,7 @@ const SignUp = () => {
             onChange={onChange}
           />
         ))}
-        <button className='signup-button'>SignUp</button>
+        <button className='signup-button'>{loading ? 'Signing you ...':'Signup' }</button>
       </form>
     </div>
   )

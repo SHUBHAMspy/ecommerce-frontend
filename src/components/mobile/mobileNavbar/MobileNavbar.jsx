@@ -22,10 +22,11 @@ const MobileNavbar = () => {
         mobileMenu[i].classList.remove('active');
       }
 
-      //mobileMenuCloseBtn[i].addEventListener('click', mobileMenuCloseFunc);
+      mobileMenuCloseBtn[i].addEventListener('click', mobileMenuCloseFunc);
 
     }
     
+
     // const handleClick = () => {
     //   mobileMenu.classList.add('active');
     // }
@@ -49,13 +50,12 @@ const MobileNavbar = () => {
           <ion-icon name="menu-outline"></ion-icon>
         </button>
 
-        <button className="action-btn">
-          <Link to={'/cart'}>
+        <Link to={'/cart'}>
+          <button className="action-btn">
             <ion-icon name="bag-handle-outline"></ion-icon>
-
             <span className="count">{totalItems}</span>
-          </Link>
-        </button>
+          </button>
+        </Link>
 
         <button className="action-btn">
           <ion-icon name="home-outline"></ion-icon>

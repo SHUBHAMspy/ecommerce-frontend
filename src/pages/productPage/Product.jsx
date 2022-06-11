@@ -18,7 +18,7 @@ const Product = () => {
       productId:id
     }
   });
-  if(loading) return <h1>Loading Plz wait</h1>
+  if(loading) return <h1 className='container loading-style'>Loading Plz wait</h1>
   if(error) console.log(error)
   if(data) console.log(data)
 
@@ -42,7 +42,7 @@ const Product = () => {
       <div className="product-detail-container">
         <div className='product-images'>
           <div className="image-container">
-            <img src={BACKEND_URL + images.data[index].attributes.url} className="product-detail-image" />
+            <img src={BACKEND_URL + images.data[index].attributes.url} className="product-detail-image" alt={`${name}`} />
           </div>
           <div className="small-images-container">
             {images.data?.map((item, i) => (
@@ -51,6 +51,7 @@ const Product = () => {
                 src={BACKEND_URL + item.attributes.url}
                 className={i === index ? 'small-image selected-image' : 'small-image'}
                 onMouseEnter={() => setIndex(i)}
+                alt={'small product display'}
               />
             ))}
           </div>

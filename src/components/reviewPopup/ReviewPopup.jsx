@@ -101,22 +101,26 @@ const ReviewPopup = ({setOpen,productId}) => {
             <textarea placeholder={handlePlaceHolder()} value={comment} onChange={handleChange}></textarea>
             <button 
               className={`submit-review ${!number && "disabled"} `} 
-              onClick={() => submitReview({
-                variables:{
-                  data:{
-                    "review":number,
-                    "comment":comment || handleText(),
-                    "reviewerName":JSON.parse(localStorage.getItem("credentials"))?.name,
-                    "product": productId 
+              onClick={() => {
+
+                submitReview({
+                  variables:{
+                    data:{
+                      "review":number,
+                      "comment":comment || handleText(),
+                      "reviewerName":JSON.parse(localStorage.getItem("credentials"))?.name,
+                      "product": productId 
+                    }
+                  },
+                  context:{
+                    headers:{
+                      Authorization: `Bearer ${JSON.parse(localStorage.getItem("credentials"))?.jwt}`
+                    }
                   }
-                },
-                context:{
-                  headers:{
-                    Authorization: `Bearer ${JSON.parse(localStorage.getItem("credentials"))?.jwt}`
-                  }
-                }
-              }) }
-            > Submit
+                });
+                setComment('');
+              }}
+            > {loading ? 'Submitting...' : 'Submit'}
             </button>
           </div>
         </div>

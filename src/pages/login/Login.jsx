@@ -87,7 +87,7 @@ const Login = () => {
             onChange={onChange}
           />
         ))}
-        <button className='login-button'>Login</button>
+        <button className='login-button'>{loading ? 'Logging in...' : 'Login'}</button>
       </form>
     </div>
   )

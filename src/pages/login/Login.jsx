@@ -1,7 +1,8 @@
 import { useMutation } from '@apollo/client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Input from '../../components/common/inputComponent/Input';
+import MobileNavbar from '../../components/mobile/mobileNavbar/MobileNavbar';
 import { loginUser } from '../../gqloperations/mutations';
 import './style.css';
 
@@ -52,6 +53,18 @@ const Login = () => {
     
   ];
 
+  useEffect(() => {
+    if(data){
+      localStorage.setItem("credentials",JSON.stringify({
+        "jwt":data.login.jwt,
+        "name":data.login.user.username,
+        "email":data.login.user.email,
+      }));
+      navigate('/cart')
+    }
+  
+  }, [data])
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     login({
@@ -60,14 +73,6 @@ const Login = () => {
       }
     })
 
-    if(data){
-      localStorage.setItem("credentials",JSON.stringify({
-        "jwt":data.login.jwt,
-        "name":data.login.user.username,
-      }));
-      navigate('/cart')
-    }
-    
   };
 
   const onChange = (e) => {
@@ -75,21 +80,24 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      {error && <div className='error-card'>{error.message}</div>}
-      <form onSubmit={handleSubmit}>
-        <h1 className='login-heading'>Login</h1>
-        {inputs.map((input) => (
-          <Input
-            key={input.id}
-            {...input}
-            value={formData[input.name]}
-            onChange={onChange}
-          />
-        ))}
-        <button className='login-button'>{loading ? 'Logging in...' : 'Login'}</button>
-      </form>
-    </div>
+    <>
+      <div className="login">
+        {error && <div className='error-card'>{error.message}</div>}
+        <form onSubmit={handleSubmit}>
+          <h1 className='login-heading'>Login</h1>
+          {inputs.map((input) => (
+            <Input
+              key={input.id}
+              {...input}
+              value={formData[input.name]}
+              onChange={onChange}
+            />
+          ))}
+          <button className='login-button'>{loading ? 'Logging in...' : 'Login'}</button>
+        </form>
+      </div>
+      <MobileNavbar visibility={false}/>
+    </>
   )
 }
 

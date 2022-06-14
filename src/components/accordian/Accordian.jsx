@@ -11,7 +11,7 @@ const Accordian = ({count}) => {
   const {loading,error,data} = useQuery(getCategories,{
     variables:{
       "pagination": {
-        "limit":20
+        "limit":50
       }
     }
   });

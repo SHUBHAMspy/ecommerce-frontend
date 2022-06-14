@@ -1,46 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from "react-use-cart";
+import SideBar from "../../sidebar/SideBar";
 import MobileMenu from '../mobileMenu/MobileMenu';
 import './style.css';
 
-const MobileNavbar = () => {
+const MobileNavbar = ({visibility}) => {
   const [open, setOpen] = useState(false);
-  // const [openSidebar,setOpenSidebar] = useState(false);
+  const [openSidebar,setOpenSidebar] = useState(false);
   const {totalItems} = useCart();
-  
-  useEffect(() => {
-    const mobileMenuOpenBtn = document.querySelectorAll('[data-mobile-menu-open-btn]');
-    const mobileMenu = document.querySelectorAll('[data-mobile-menu]');
-    const mobileMenuCloseBtn = document.querySelectorAll('[data-mobile-menu-close-btn]');
-    for (let i = 0; i < mobileMenuOpenBtn.length; i++) {
-      mobileMenuOpenBtn[i].addEventListener('click', function () {
-        mobileMenu[i].classList.add('active');
-        //overlay.classList.add('active');
-      });
-      const mobileMenuCloseFunc = function () {
-        mobileMenu[i].classList.remove('active');
-      }
-
-      mobileMenuCloseBtn[i].addEventListener('click', mobileMenuCloseFunc);
-
-    }
-    
-
-    // const handleClick = () => {
-    //   mobileMenu.classList.add('active');
-    // }
-    //return () =>  mobileMenuOpenBtn.addEventListener('click', handleClick);
-    
-  }, [])
+  const credentials = JSON.parse(localStorage.getItem('credentials'));
   
   const closeMenu = (close) => {
     setOpen(close);
   }
-  // const closeSidebar = (close) => {
-  //   setOpenSidebar(close);
-  // }
+  
+  const closeSidebar = (close) => {
+    setOpenSidebar(close);
+  }
 
+  useEffect(() => {
+    const handleResize = () => {
+      window.innerWidth < 1024 ? setOpen(open) : setOpen(false)
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [open]);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      window.innerWidth < 1024 ? setOpenSidebar(openSidebar) : setOpenSidebar(false)
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [openSidebar])
   
   return (
     <>
@@ -50,7 +49,7 @@ const MobileNavbar = () => {
           <ion-icon name="menu-outline"></ion-icon>
         </button>
 
-        <Link to={'/cart'}>
+        <Link to={credentials? '/cart': '/login'}>
           <button className="action-btn">
             <ion-icon name="bag-handle-outline"></ion-icon>
             <span className="count">{totalItems}</span>
@@ -67,14 +66,15 @@ const MobileNavbar = () => {
           <span className="count">0</span>
         </button>
 
-        <button className="action-btn" data-mobile-menu-open-btn >
-          {/* onClick={() => setOpenSidebar(!openSidebar)} */}
+        <button className="action-btn" data-mobile-menu-open-btn
+          onClick={() => setOpenSidebar(!openSidebar)}
+        >
           <ion-icon name="grid-outline"></ion-icon>
         </button>
 
       </div>
-      {open && <MobileMenu  setClose={closeMenu}/>}
-      {/* {openSidebar && <SideBar openSidebar={openSidebar} closeSidebar={closeSidebar}/>} */}
+      {open && <MobileMenu open={open} setClose={closeMenu}/>}
+      {openSidebar && <SideBar openSidebar={openSidebar} sidebarVisible={visibility} closeSidebar={closeSidebar}/>} 
     </>
   )
 }

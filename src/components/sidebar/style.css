@@ -17,15 +17,27 @@
   transition: 0.5s ease;
   z-index: 20;
 }
+.sidebar-wrapper{
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  /* will-change: transform; */
+  transition: all 1s ease-in-out;
 
+}
 .sidebar.active {
   left: 0;
   visibility: visible;
+  border: 1px solid var(--cultured);
+  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.1);
 }
-/* .sidebar.hidden {
+.sidebar.hidden {
   left: 0;
   visibility: hidden;
-} */
+}
 
 .sidebar-category {
   margin-bottom: 15px;

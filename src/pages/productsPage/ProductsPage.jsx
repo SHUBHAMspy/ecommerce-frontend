@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import MobileNavbar from '../../components/mobile/mobileNavbar/MobileNavbar'
 import Pagination from '../../components/pagination/PaginationComponent'
 import Products from '../../components/products/Products'
 import SideBar from '../../components/sidebar/SideBar'
@@ -15,16 +16,18 @@ const ProductsPage = () => {
     setPage(currentPage);
   }
   return (
-    <div className="product-container">
-      <div className="container">
-        <SideBar/>
-        <div className='product-box'>
-          <Products getPageCount={getPageCount} currentPage={page}/>
-          <Pagination pageCount={pageCount} changePage={changePage}/>
-        </div>
-
-      </div>  
-    </div>
+    <>
+      <div className="product-container">
+        <div className="container">
+          <SideBar />
+          <div className='product-box'>
+            <Products getPageCount={getPageCount} currentPage={page}/>
+            <Pagination pageCount={pageCount} changePage={changePage}/>
+          </div>
+        </div>  
+      </div>
+      <MobileNavbar visibility={true}/>
+    </>
   )
 }
 

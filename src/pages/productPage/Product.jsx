@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { useCart } from 'react-use-cart';
+import MobileNavbar from '../../components/mobile/mobileNavbar/MobileNavbar';
 import ReviewPopup from '../../components/reviewPopup/ReviewPopup';
 import { getProduct } from '../../gqloperations/queries';
 import { BACKEND_URL } from '../../utils/helpers';
@@ -125,6 +126,7 @@ const Product = () => {
         }  
       </div>
       {open && <ReviewPopup setOpen={setOpen} productId={id}/>}
+      <MobileNavbar visibility={false}/>
     </>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router"
 import { useCart } from "react-use-cart"
+import MobileNavbar from "../../components/mobile/mobileNavbar/MobileNavbar"
 import { BACKEND_URL } from "../../utils/helpers"
 import "./style.css"
 
@@ -83,6 +84,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
           }
         </div>
       </section>
+      <MobileNavbar visibility={false}/>
     </>
   )
 }

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import MenuData from './MenuData';
 import './style.css';
-const MobileMenu = ({setClose}) => {
-  const [openMenu, setOpenMenu] = useState(true);
+const MobileMenu = ({open,setClose}) => {
+  const [openMenu, setOpenMenu] = useState(open);
   const [activeIndex, setActiveIndex] = useState(null);
+  const credentials = JSON.parse(localStorage.getItem('credentials'))
+  const navigate = useNavigate();
+  
   //console.log(openMenu);
   const handleClick = (index) => {
     if (activeIndex === index) {
@@ -13,10 +16,21 @@ const MobileMenu = ({setClose}) => {
       setActiveIndex(index);
     }
   };
-  const active = openMenu ? "active" : "";
+
+  const logout = () => {
+    localStorage.removeItem('credentials');
+  }
+
+  let active = openMenu  ? "active" : "";
+  
+  useEffect(() => {
+    setOpenMenu(open)
     
+  }, [open]);
+  
   return (
     <>
+      <div className='overlay'></div>
           <nav className={`mobile-navigation-menu has-scrollbar ${active}`} >
 
             <div className="menu-top">
@@ -68,138 +82,7 @@ const MobileMenu = ({setClose}) => {
                 })
               }
 
-              {/* <li className="menu-category">
-
-                <button className="accordion-menu" data-accordion-btn>
-                  <p className="menu-title">Men's</p>
-
-                  <div>
-                    <ion-icon name="add-outline" className="add-icon"></ion-icon>
-                    <ion-icon name="remove-outline" className="remove-icon"></ion-icon>
-                  </div>
-                </button>
-
-                <ul className="submenu-category-list" data-accordion>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Shirt</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Shorts & Jeans</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Safety Shoes</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Wallet</a>
-                  </li>
-
-                </ul>
-
-              </li>
-
-              <li className="menu-category">
-
-                <button className="accordion-menu" data-accordion-btn>
-                  <p className="menu-title">Women's</p>
-
-                  <div>
-                    <ion-icon name="add-outline" className="add-icon"></ion-icon>
-                    <ion-icon name="remove-outline" className="remove-icon"></ion-icon>
-                  </div>
-                </button>
-
-                <ul className="submenu-category-list" data-accordion>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Dress & Frock</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Earrings</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Necklace</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Makeup Kit</a>
-                  </li>
-
-                </ul>
-
-              </li>
-
-              <li className="menu-category">
-
-                <button className="accordion-menu" data-accordion-btn>
-                  <p className="menu-title">Jewelry</p>
-
-                  <div>
-                    <ion-icon name="add-outline" className="add-icon"></ion-icon>
-                    <ion-icon name="remove-outline" className="remove-icon"></ion-icon>
-                  </div>
-                </button>
-
-                <ul className="submenu-category-list" data-accordion>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Earrings</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Couple Rings</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Necklace</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Bracelets</a>
-                  </li>
-
-                </ul>
-
-              </li>
-
-              <li className="menu-category">
-
-                <button className="accordion-menu" data-accordion-btn>
-                  <p className="menu-title">Perfume</p>
-
-                  <div>
-                    <ion-icon name="add-outline" className="add-icon"></ion-icon>
-                    <ion-icon name="remove-outline" className="remove-icon"></ion-icon>
-                  </div>
-                </button>
-
-                <ul className="submenu-category-list" data-accordion>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Clothes Perfume</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Deodorant</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Flower Fragrance</a>
-                  </li>
-
-                  <li className="submenu-category">
-                    <a href="#" className="submenu-title">Air Freshener</a>
-                  </li>
-
-                </ul>
-
-              </li> */}
-
+              
               <li className="menu-category">
                 <a href="#" className="menu-title">Blog</a>
               </li>
@@ -285,6 +168,31 @@ const MobileMenu = ({setClose}) => {
                   </a>
                 </li>
               </ul>
+            </div>
+            <div className="side-menu-footer">
+              
+              {credentials ? (
+                <>
+                  <div className="avatar">
+                    <ion-icon name="person-outline"></ion-icon>
+                  </div>
+                  <div className="user-info">
+                    <h5>{credentials.name}</h5>
+                    <p>{credentials.email}</p>
+                  </div>
+                  <button className='logout-icon' 
+                    onClick={() => {
+                      if(credentials){
+                        logout();
+                        navigate('/')
+                      }
+                    }}>
+                    <ion-icon name="exit-outline"></ion-icon>
+                  </button>
+                </>
+              )
+                : <Link to='/login' style={{color:'white',margin:'auto'}}>Login</Link>
+              }
             </div>
           </nav>
     </>

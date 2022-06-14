@@ -2,6 +2,7 @@ import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import Input from '../../components/common/inputComponent/Input';
+import MobileNavbar from '../../components/mobile/mobileNavbar/MobileNavbar';
 import { signUpUser } from '../../gqloperations/mutations';
 import './style.css';
 
@@ -18,7 +19,11 @@ const SignUp = () => {
   const [signUp,{loading,error,data}] = useMutation(signUpUser)
   if(error) console.log(JSON.stringify(error, null, 2));
   if(data){
-    localStorage.setItem("jwt",data.register.jwt);
+    localStorage.setItem("credentials",JSON.stringify({
+      "jwt":data.register.jwt,
+      "name":data.register.user.username,
+      "email":data.register.user.email,
+    }));
     navigate('/')
   }
   const inputs = [
@@ -71,7 +76,6 @@ const SignUp = () => {
     signUp({
       variables:{
         input:formData
-
       }
     })
   };
@@ -81,21 +85,24 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup">
-      {error && <div className='error-card'>{error.message}</div>}
-      <form onSubmit={handleSubmit}>
-        <h1 className='signup-heading'>SignUp</h1>
-        {inputs.map((input) => (
-          <Input
-            key={input.id}
-            {...input}
-            value={formData[input.name]}
-            onChange={onChange}
-          />
-        ))}
-        <button className='signup-button'>{loading ? 'Signing you ...':'Signup' }</button>
-      </form>
-    </div>
+    <>
+      <div className="signup">
+        {error && <div className='error-card'>{error.message}</div>}
+        <form onSubmit={handleSubmit}>
+          <h1 className='signup-heading'>SignUp</h1>
+          {inputs.map((input) => (
+            <Input
+              key={input.id}
+              {...input}
+              value={formData[input.name]}
+              onChange={onChange}
+            />
+          ))}
+          <button className='signup-button'>{loading ? 'Signing you ...':'Signup' }</button>
+        </form>
+      </div>
+      <MobileNavbar visibility={false}/>
+    </>
   )
 }
 

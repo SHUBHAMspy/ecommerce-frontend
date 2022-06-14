@@ -8,8 +8,10 @@ const SearchBar = () => {
   const {totalItems} = useCart();
   const [nameQuery,setNameQuery] = useState("");
   const [hideResult,sethideResult] = useState(true);
-  const navigate = useNavigate()
-  
+  const [isHovering, setIsHovering] = useState(false);
+  const [isHoveringUser, setIsHoveringUser] = useState(false);
+  const navigate = useNavigate();
+  const credentials = JSON.parse(localStorage.getItem('credentials'))
   const [getProduct,{loading,error,data}] = useLazyQuery(getProductByName,{
     variables:{
       "filters": {
@@ -28,7 +30,6 @@ const SearchBar = () => {
     else{
       sethideResult(true);
     }
-  
   }, [nameQuery])
   
   
@@ -37,6 +38,58 @@ const SearchBar = () => {
       setNameQuery(e.target.value)  
     },1000)
 
+  }
+
+  const handleLoginMouseOver = () => {
+    setIsHoveringUser(true);
+  };
+
+  const handleLoginMouseOut = () => {
+    setIsHoveringUser(false);
+  };
+  const handleCartMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleCartMouseOut = () => {
+    setIsHovering(false);
+  };
+  
+  const logout = () => {
+    localStorage.removeItem('credentials');
+  }
+
+  const HoverableDivCart = ({message}) => {
+    return (
+      <div className={'whole-cart-window'} >
+        <div className='cart-wrapper'>
+          <p>
+            {credentials ?`${message.para}`: 'login to access the cart'}
+          </p>
+          <Link to={credentials ? '/cart' : '/login'} className='buy-now'>{credentials? `${message.button}`: 'Login to access '}</Link>
+          
+        </div>
+      </div>
+    )
+  }
+  const HoverableDivLogin = ({message}) => {
+    return (
+      <div className={'login-window'} >
+        <div className='cart-wrapper'>
+          <p>
+            {credentials ?`${message.para}`: 'Click login or the button below'}
+          </p>
+          <Link 
+            to={credentials ? '/' : '/login'} 
+            className='buy-now'
+            onClick={() => {if(credentials) logout()}}
+          >
+            {credentials? `${message.button}`: 'Login'}
+          </Link>
+          
+        </div>
+      </div>
+    )
   }
 
   //const credentials?{jwt,name}:credentials = JSON.parse(localStorage.getItem("credentials"));
@@ -72,7 +125,9 @@ const SearchBar = () => {
 
         <div className="header-user-actions">
 
-          <button className="action-btn" style={{fontSize:"32px"}} >
+          <button className="action-btn" style={{fontSize:"32px"}}
+            onMouseOver={handleLoginMouseOver} onMouseOut={handleLoginMouseOut}
+          >
             {JSON.parse(localStorage.getItem("credentials"))?.jwt 
               ?(
                 <>
@@ -81,6 +136,7 @@ const SearchBar = () => {
                 </>
               ): <p className='loginText' onClick={() => navigate('/login') }>Login</p> 
             }
+            {isHoveringUser && <HoverableDivLogin message={{para:`Email: ${credentials?.email}`,button:'Logout'}}/>}
           </button>
 
           <button className="action-btn">
@@ -88,12 +144,17 @@ const SearchBar = () => {
             <span className="count">0</span>
           </button>
 
-          <Link to={'/cart'}>
-            <button className="action-btn">
-              <ion-icon name="bag-handle-outline"></ion-icon>
-              <span className="count">{totalItems}</span>
-            </button>
-          </Link>
+          
+          <button 
+            className="action-btn"
+            onClick={() => credentials? navigate('/cart') : navigate('/login') }
+            onMouseOver={handleCartMouseOver} onMouseOut={handleCartMouseOut}
+          >
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span className="count">{totalItems}</span>
+            {isHovering && <HoverableDivCart message={{para:`You have ${totalItems} items in your cart`,button:'Go to Cart'}}/>}
+          </button>
+        
         </div>
       </div>
     </div>

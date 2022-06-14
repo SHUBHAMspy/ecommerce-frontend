@@ -42,14 +42,14 @@ const Products = ({currentPage,getPageCount}) => {
   
   console.log(data);
   //console.log(data.products.meta.pagination.pageCount);
-  const addToCart = (id,name,description,price,images) => {
+  const addToCart = (id,name,price,images) => {
   
     addItem({
       id,
       name,
-      description,
       price,
       img: images.data[0].attributes.url,
+      quantity:1
     })
   }
   
@@ -76,8 +76,8 @@ const Products = ({currentPage,getPageCount}) => {
                   <button 
                     className="btn-action"
                     onClick={() => {
-                      const {name,price,description,images} = attributes;
-                      addToCart(id,name,price,description,images);
+                      const {name,price,images} = attributes;
+                      addToCart(id,name,price,images);
                     }}
                   >
                     <ion-icon name="bag-add-outline"></ion-icon>

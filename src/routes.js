@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router';
 import Cart from './pages/cart/cart';
 import Home from './pages/Home';
 import Login from './pages/login/Login';
@@ -6,6 +7,8 @@ import ProductByCategory from './pages/productsByCategory/ProductByCategory';
 import ProductsPage from './pages/productsPage/ProductsPage';
 import SignUp from './pages/signUp/SignUp';
 
+const credentials = JSON.parse(localStorage.getItem('credentials'));
+  
 const routes = [
   {path:"/", element: <Home/>},
   {path:"/login",element:<Login />},
@@ -13,7 +16,7 @@ const routes = [
   {path:"/product/:id",element:<Product />},
   {path:"/products",element:<ProductsPage />},
   {path:"/category/:id",element:<ProductByCategory />},
-  {path:"/cart",element:<Cart />},
+  {path:"/cart",element: credentials ? <Cart /> : <Navigate to='/login' /> },
 
 ]
 

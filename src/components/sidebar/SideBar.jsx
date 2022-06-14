@@ -1,23 +1,35 @@
 import { useQuery } from '@apollo/client';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { getMeta } from '../../gqloperations/queries';
 import Accordian from '../accordian/Accordian';
 import './style.css';
 
-const SideBar = () => {
+const SideBar = ({openSidebar,closeSidebar,sidebarVisible}) => {
   
   const {loading,error,data} = useQuery(getMeta);
+  const sidebar = useRef(null);
   console.log(loading);
   //console.log(data);
   let newdata = {...data};
   console.log(newdata);
+
+  const [open, setOpen] = useState(openSidebar);
   
-  // console.log(error);
-  //const active = openSidebar ? 'active' : '';
+  //const active = openSidebar ? 'active' : 'hidden';
+  useEffect(() => {
+    setOpen(openSidebar);
+
+    open && sidebarVisible 
+      ? sidebar.current.classList.add('active') 
+      : sidebar.current.classList.remove('active') 
+
+  
+  },[openSidebar,open])
   
   return (
-    
-        <div className="sidebar  has-scrollbar"  data-mobile-menu>
+      <>
+        <div className='sidebar-wrapper'></div>
+        <div ref={sidebar}  className='sidebar has-scrollbar' data-mobile-menu>
           <div className="sidebar-category">
             <div className="sidebar-top">
               <h2 className="sidebar-title">Category</h2>
@@ -25,9 +37,10 @@ const SideBar = () => {
               <button 
                 className="sidebar-close-btn" data-mobile-menu-close-btn 
                 
-                // onClick={() => {
-                //   closeSidebar(!openSidebar)
-                // }}
+                onClick={() => {
+                  setOpen(!open)
+                  closeSidebar(!open)
+                }}
               >
                 <ion-icon name="close-outline"></ion-icon>
               </button>
@@ -157,17 +170,11 @@ const SideBar = () => {
                   </div>
 
                 </div>
-
               </div>
-
             </div>
-
           </div>
         </div>
-
-
-      
-    
+      </>
   )
 }
 

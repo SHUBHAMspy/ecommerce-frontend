@@ -57,7 +57,7 @@ const SideBar = ({openSidebar,closeSidebar,sidebarVisible}) => {
                 <div className="showcase">
 
                   <a href="#" className="showcase-img-box">
-                    <img src="./images/products/1.jpg" alt="baby fabric shoes" width="75" height="75"
+                    <img src="../images/products/1.jpg" alt="baby fabric shoes" width="75" height="75"
                       className="showcase-img"/>
                   </a>
 
@@ -87,7 +87,7 @@ const SideBar = ({openSidebar,closeSidebar,sidebarVisible}) => {
                 <div className="showcase">
 
                   <a href="#" className="showcase-img-box">
-                    <img src="./images/products/2.jpg" alt="men's hoodies t-shirt" className="showcase-img"
+                    <img src="../images/products/2.jpg" alt="men's hoodies t-shirt" className="showcase-img"
                       width="75" height="75"/>
                   </a>
 
@@ -116,7 +116,7 @@ const SideBar = ({openSidebar,closeSidebar,sidebarVisible}) => {
                 <div className="showcase">
 
                   <a href="#" className="showcase-img-box">
-                    <img src="./images/products/3.jpg" alt="girls t-shirt" className="showcase-img" width="75"
+                    <img src="../images/products/3.jpg" alt="girls t-shirt" className="showcase-img" width="75"
                       height="75"/>
                   </a>
 
@@ -145,7 +145,7 @@ const SideBar = ({openSidebar,closeSidebar,sidebarVisible}) => {
                 <div className="showcase">
 
                   <a href="#" className="showcase-img-box">
-                    <img src="./images/products/4.jpg" alt="woolen hat for men" className="showcase-img" width="75"
+                    <img src="../images/products/4.jpg" alt="woolen hat for men" className="showcase-img" width="75"
                       height="75"/>
                   </a>
 

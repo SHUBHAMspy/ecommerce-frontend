@@ -1,10 +1,12 @@
 import { useMutation } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/common/inputComponent/Input';
 import MobileNavbar from '../../components/mobile/mobileNavbar/MobileNavbar';
 import { loginUser } from '../../gqloperations/mutations';
 import './style.css';
+
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -63,7 +65,7 @@ const Login = () => {
       navigate('/cart')
     }
   
-  }, [data])
+  }, [data,navigate])
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -94,6 +96,7 @@ const Login = () => {
             />
           ))}
           <button className='login-button'>{loading ? 'Logging in...' : 'Login'}</button>
+          <Link className='login-signupLink' to={'/signup'}>New user? then SignUp</Link>
         </form>
       </div>
       <MobileNavbar visibility={false}/>

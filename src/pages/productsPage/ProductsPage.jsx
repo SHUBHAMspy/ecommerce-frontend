@@ -8,6 +8,7 @@ import './style.css'
 const ProductsPage = () => {
   const [page,setPage] = useState(1)
   const [pageCount,setPageCount] = useState(1);
+  
   const getPageCount = (count) => {
     setPageCount(count);
   }

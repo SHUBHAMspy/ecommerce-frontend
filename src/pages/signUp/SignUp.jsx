@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/common/inputComponent/Input';
 import MobileNavbar from '../../components/mobile/mobileNavbar/MobileNavbar';
 import { signUpUser } from '../../gqloperations/mutations';
@@ -99,6 +99,8 @@ const SignUp = () => {
             />
           ))}
           <button className='signup-button'>{loading ? 'Signing you ...':'Signup' }</button>
+          <Link className='login-signupLink' to={'/login'}>Already a user? Login</Link>
+        
         </form>
       </div>
       <MobileNavbar visibility={false}/>

@@ -8,6 +8,7 @@ import './style.css';
 
 const Products = ({currentPage,getPageCount}) => {
   //const [page,setPage] = useState(1)
+  //const [pageCount, setpageCount] = useState(second)
   const {addItem} = useCart();
   const {loading,error,data,refetch} = useQuery(getAllProducts,{
     variables:{
@@ -20,24 +21,25 @@ const Products = ({currentPage,getPageCount}) => {
 
   
   console.log('page:' + currentPage);
+  const givePageCount = () => {
+    if(getPageCount) getPageCount(data.products.meta.pagination.pageCount);
+    
+  }
   useEffect(() => {
     // const updatePage = () => {
     //   setPage(currentPage)
     // }
     // updatePage()
+    if(!loading) givePageCount()
     if(currentPage !==1) refetch() 
-  }, [currentPage,refetch])
+  }, [currentPage,refetch,loading])
   
   
-  const givePageCount = () => {
-    if(getPageCount) getPageCount(data.products.meta.pagination.pageCount);
-    
-  }
-  
+
   if(loading) return <h1 className='loading-style'>Loading Please wait...</h1>
   if(error) console.log(error);
   
-  if(!loading) givePageCount()
+  
     
   
   console.log(data);
@@ -63,6 +65,8 @@ const Products = ({currentPage,getPageCount}) => {
               <div className="showcase-banner">
                 <img src={BACKEND_URL + attributes.images.data[0].attributes.url} alt={attributes.name} width="300" className="product-img default"/>
                 <img src={BACKEND_URL + attributes.images.data[1].attributes.url} alt={attributes.name} width="300" className="product-img hover"/>
+                
+                {attributes.tag && <p className={`showcase-badge angle ${attributes.tag === 'New' ? 'pink' : 'black'}`}>{attributes.tag}</p>}
                 <div className="showcase-actions">
                   <button className="btn-action">
                     <ion-icon name="heart-outline"></ion-icon>

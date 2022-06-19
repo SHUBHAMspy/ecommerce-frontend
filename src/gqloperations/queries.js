@@ -10,6 +10,7 @@ export const getAllProducts = gql`
           name
           description
           price
+          tag    
           images {
             data {
               attributes {
@@ -78,11 +79,12 @@ export const getProduct = gql`
   }
 `
 export const getMeta = gql`
-  query Meta {
-    categories {
+  query Meta($filters: CategoryFiltersInput) {
+    categories(filters: $filters) {
       meta {
         pagination {
           total
+          pageCount
         }
       }
     }
@@ -132,12 +134,12 @@ export const getCategories = gql`
 `
 
 export const getCategoryProducts = gql`
-  query Category($categoryId: ID) {
+  query Category($categoryId: ID,$pagination: PaginationArg) {
     category(id: $categoryId) {
       data {
         attributes {
           name
-          products {
+          products(pagination: $pagination) {
             data {
               id
               attributes {
@@ -160,6 +162,7 @@ export const getCategoryProducts = gql`
                 }
               }
             }
+            
           }
         }
         id

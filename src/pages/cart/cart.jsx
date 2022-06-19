@@ -11,7 +11,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
   const navigate = useNavigate();
   // const totalPrice = CartItem.reduce((price, item) => price + item.qty * item.price, 0)
 
- 
+
   return (
     <>
       <section className='cart-items'>
@@ -77,7 +77,7 @@ const Cart = ({ CartItem, addToCart, decreaseQty }) => {
                     <h3>${cartTotal}.00</h3>
                   </div>
                   
-                  <button type="button" className="buy-now" >Buy Now</button>
+                  <button type="button" className="buy-now" onClick={() => navigate('/checkout')} >Buy Now</button>
                   
                 </div>
               )

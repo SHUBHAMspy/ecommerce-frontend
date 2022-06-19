@@ -16,7 +16,7 @@ const ProductsSection = () => {
           <TopProducts/>
           <FeaturedProducts/>
           <Products/>
-          <button className='shop-cta' onClick={() => navigate('/products')}>Go Shopping</button>
+          <button className='shop-cta' onClick={() => navigate('/products')}>Go Shopping &gt;</button>
         </div>
 
       </div>  

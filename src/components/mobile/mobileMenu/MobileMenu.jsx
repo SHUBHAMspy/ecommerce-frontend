@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import MenuData from './MenuData';
 import './style.css';
+
 const MobileMenu = ({open,setClose}) => {
   const [openMenu, setOpenMenu] = useState(open);
   const [activeIndex, setActiveIndex] = useState(null);
@@ -30,7 +31,7 @@ const MobileMenu = ({open,setClose}) => {
   
   return (
     <>
-      <div className='overlay'></div>
+      <div className='overlayy'></div>
           <nav className={`mobile-navigation-menu has-scrollbar ${active}`} >
 
             <div className="menu-top">

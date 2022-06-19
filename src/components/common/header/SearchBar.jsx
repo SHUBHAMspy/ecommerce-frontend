@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isHoveringUser, setIsHoveringUser] = useState(false);
   const navigate = useNavigate();
-  const credentials = JSON.parse(localStorage.getItem('credentials'))
+  const credentials = JSON.parse(localStorage.getItem('credentials'));
   const [getProduct,{loading,error,data}] = useLazyQuery(getProductByName,{
     variables:{
       "filters": {

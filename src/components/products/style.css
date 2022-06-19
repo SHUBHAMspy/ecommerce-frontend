@@ -147,6 +147,9 @@
   padding: 30px;
 }
 
+.black{ background: var(--eerie-black);}
+.pink{ background: var(--salmon-pink);}
+
 @media (min-width: 480px) {
   .product-grid {
     grid-template-columns: 1fr 1fr;

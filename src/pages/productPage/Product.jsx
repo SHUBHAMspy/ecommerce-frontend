@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useCart } from 'react-use-cart';
 import MobileNavbar from '../../components/mobile/mobileNavbar/MobileNavbar';
 import ReviewPopup from '../../components/reviewPopup/ReviewPopup';
@@ -12,8 +12,10 @@ const Product = () => {
   const [open, setOpen] = useState(false); 
   const [index, setIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
   const {id} = useParams();
   const {addItem} = useCart();
+  const credentials = JSON.parse(localStorage.getItem('credentials'));
   const {loading,error,data} =  useQuery(getProduct,{
     variables:{
       productId:id
@@ -85,7 +87,17 @@ const Product = () => {
           </div>
           <div className="buttons">
             <button type="button" className="add-to-cart" onClick={addToCart}>Add to Cart</button>
-            <button type="button" className="buy-now" >Buy Now</button>
+            <button type="button" className="buy-now" onClick={() => navigate('/checkout',{
+              state:{
+                id,
+                name,
+                price,
+                quantity,
+                img: images.data[0].attributes.url,
+              }
+              })} 
+            > Buy Now
+            </button>
           </div>
           
         </div>
@@ -93,7 +105,7 @@ const Product = () => {
 
       <div className='product-review container'>
         <h1>Reviews</h1>
-        <button className='add-review' onClick={() => setOpen(true)}>Add a Review</button>
+        <button className='add-review' onClick={() => credentials ? setOpen(true) : navigate('/login') }>{ credentials ? 'Add a Review' : 'Login to add review'}</button>
         {reviews.data.length ? (
           <>
             {

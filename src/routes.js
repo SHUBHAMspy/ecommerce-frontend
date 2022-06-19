@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router';
 import Cart from './pages/cart/cart';
+import Checkout from './pages/checkout/Checkout';
 import Home from './pages/Home';
 import Login from './pages/login/Login';
 import Product from './pages/productPage/Product';
@@ -17,6 +18,7 @@ const routes = [
   {path:"/products",element:<ProductsPage />},
   {path:"/category/:id",element:<ProductByCategory />},
   {path:"/cart",element: credentials ? <Cart /> : <Navigate to='/login' /> },
+  {path:"/checkout",element: credentials ? <Checkout /> : <Navigate to='/login' /> },
 
 ]
 

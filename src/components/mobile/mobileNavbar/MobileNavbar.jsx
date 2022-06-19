@@ -56,9 +56,11 @@ const MobileNavbar = ({visibility}) => {
           </button>
         </Link>
 
-        <button className="action-btn">
-          <ion-icon name="home-outline"></ion-icon>
-        </button>
+        <Link to={'/'}>
+          <button className="action-btn">
+            <ion-icon name="home-outline"></ion-icon>
+          </button>
+        </Link>
 
         <button className="action-btn">
           <ion-icon name="heart-outline"></ion-icon>

@@ -54,6 +54,10 @@ const MobileMenu = ({open,setClose}) => {
                 <Link to={'/'} className="menu-title">Home</Link>
               </li>
 
+              <li className="menu-category">
+                <Link to={'/products'} className="menu-title">Products</Link>
+              </li>
+
               {
                 MenuData.map((menuItem,index) => {
                   const active = index === activeIndex ? "active" : "";
@@ -86,10 +90,6 @@ const MobileMenu = ({open,setClose}) => {
               
               <li className="menu-category">
                 <a href="#" className="menu-title">Blog</a>
-              </li>
-
-              <li className="menu-category">
-                <a href="#" className="menu-title">Hot Offers</a>
               </li>
 
             </ul>

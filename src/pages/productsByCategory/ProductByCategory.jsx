@@ -45,7 +45,7 @@ const ProductByCategory = () => {
     
   }, [currentPage,refetch])
   
-  if(loading) return <h1>Loading</h1>
+  if(loading) return <h1 className='loading-style'>Loading Please wait ...</h1>
   if(error) console.log(error);
   return (
     <>

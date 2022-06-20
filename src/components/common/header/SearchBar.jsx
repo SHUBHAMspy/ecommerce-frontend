@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from "react-use-cart";
 import { getProductByName } from '../../../gqloperations/queries';
+import './style.css';
 
 const SearchBar = () => {
   const {totalItems} = useCart();
@@ -11,7 +12,7 @@ const SearchBar = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [isHoveringUser, setIsHoveringUser] = useState(false);
   const navigate = useNavigate();
-  const credentials = JSON.parse(localStorage.getItem('credentials'));
+  const credentials = JSON.parse(localStorage.getItem('credentials'))
   const [getProduct,{loading,error,data}] = useLazyQuery(getProductByName,{
     variables:{
       "filters": {
@@ -61,7 +62,7 @@ const SearchBar = () => {
 
   const HoverableDivCart = ({message}) => {
     return (
-      <div className={'whole-cart-window'} >
+      <div className='whole-cart-window' >
         <div className='cart-wrapper'>
           <p>
             {credentials ?`${message.para}`: 'login to access the cart'}
@@ -74,7 +75,7 @@ const SearchBar = () => {
   }
   const HoverableDivLogin = ({message}) => {
     return (
-      <div className={'login-window'} >
+      <div className='login-window' >
         <div className='cart-wrapper'>
           <p>
             {credentials ?`${message.para}`: 'Click login or the button below'}
@@ -114,7 +115,16 @@ const SearchBar = () => {
           <div className='search-item' hidden={hideResult}>
             {data &&
               data.products.data.map(({id,attributes}) => (
-                <div key={id} onClick={() => setNameQuery("")} >
+                <div style={{
+                  marginBlock: '10px',
+                  border: '1px solid var(--cultured)',
+                  padding: '15px',
+                  borderRadius: 'var(--border-radius-md)',
+                  color: 'var(--eerie-black)'
+                }} 
+                  key={id} 
+                  onClick={() => setNameQuery("")} 
+                >
                   <Link to={`/product/${id}`} >{attributes.name}</Link>
                 </div>
               ))

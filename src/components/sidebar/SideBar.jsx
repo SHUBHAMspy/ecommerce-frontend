@@ -24,7 +24,7 @@ const SideBar = ({openSidebar,closeSidebar,sidebarVisible}) => {
       : sidebar.current.classList.remove('active') 
 
   
-  },[openSidebar,open])
+  },[openSidebar,open,sidebarVisible])
   
   return (
       <>

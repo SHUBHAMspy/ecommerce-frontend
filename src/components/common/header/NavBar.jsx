@@ -1,278 +1,78 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import MenuData, { NavbarMenu } from '../../mobile/mobileMenu/MenuData'
+import './style.css'
 
 const NavBar = () => {
   return (
     <>
-    
       <nav className="desktop-navigation-menu">
-
         <div className="container">
-
           <ul className="desktop-menu-category-list">
-
             <li className="menu-category">
               <Link to={'/'} className="menu-title">Home</Link>
             </li>
 
             <li className="menu-category">
-              <a href="#" className="menu-title">Categories</a>
-
+              <Link className="menu-title" to={'/products'}>Categories</Link>
               <div className="dropdown-panel">
+                  {
+                    NavbarMenu.map((navmenuItem,index) => (
+                      <ul className="dropdown-panel-list" key={index}>
+                        <li className="menu-title">
+                          <Link to={'/products'}>{navmenuItem.title}</Link>
+                        </li>
+                        {
+                          navmenuItem.subCategories.map((navsubmenu,index) => (
+                            <li className="panel-list-item" key={index}>
+                              <Link to={'/products'}>{navsubmenu.name}</Link>
+                            </li>
+                          ))
+                        }
 
-                <ul className="dropdown-panel-list">
-
-                  <li className="menu-title">
-                    <a href="#">Electronics</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Desktop</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Laptop</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Camera</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Tablet</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Headphone</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">
-                      <img src="./images/electronics-banner-1.jpg" alt="headphone collection" width="250"
-                        height="119"/>
-                    </a>
-                  </li>
-
-                </ul>
-
-                <ul className="dropdown-panel-list">
-
-                  <li className="menu-title">
-                    <a href="#">Men's</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Formal</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Casual</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Sports</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Jacket</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Sunglasses</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">
-                      <img src="./images/mens-banner.jpg" alt="men's fashion" width="250" height="119"/>
-                    </a>
-                  </li>
-
-                </ul>
-
-                <ul className="dropdown-panel-list">
-
-                  <li className="menu-title">
-                    <a href="#">Women's</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Formal</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Casual</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Perfume</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Cosmetics</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Bags</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">
-                      <img src="./images/womens-banner.jpg" alt="women's fashion" width="250" height="119"/>
-                    </a>
-                  </li>
-
-                </ul>
-
-                <ul className="dropdown-panel-list">
-
-                  <li className="menu-title">
-                    <a href="#">Electronics</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Smart Watch</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Smart TV</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Keyboard</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Mouse</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">Microphone</a>
-                  </li>
-
-                  <li className="panel-list-item">
-                    <a href="#">
-                      <img src="./images/electronics-banner-2.jpg" alt="mouse collection" width="250" height="119"/>
-                    </a>
-                  </li>
-
-                </ul>
-
+                        <li className="panel-list-item">
+                          <Link to={'/products'}>
+                            <img src={navmenuItem.img} alt="collection" width="250" height="119"/>
+                          </Link>
+                        </li>
+                      </ul>
+                    ))
+                  }
+                
               </div>
-            </li>
-
+            </li> 
+            
             <li className="menu-category">
-              <a href="#" className="menu-title">Men's</a>
-
-              <ul className="dropdown-list">
-
-                <li className="dropdown-item">
-                  <a href="#">Shirt</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Shorts & Jeans</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Safety Shoes</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Wallet</a>
-                </li>
-
-              </ul>
+              <Link to={'/products'} className="menu-title">Products</Link>
             </li>
 
-            <li className="menu-category">
-              <a href="#" className="menu-title">Women's</a>
-
-              <ul className="dropdown-list">
-
-                <li className="dropdown-item">
-                  <a href="#">Dress & Frock</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Earrings</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Necklace</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Makeup Kit</a>
-                </li>
-
-              </ul>
-            </li>
-
-            <li className="menu-category">
-              <a href="#" className="menu-title">Jewelry</a>
-
-              <ul className="dropdown-list">
-
-                <li className="dropdown-item">
-                  <a href="#">Earrings</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Couple Rings</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Necklace</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Bracelets</a>
-                </li>
-
-              </ul>
-            </li>
-
-            <li className="menu-category">
-              <a href="#" className="menu-title">Perfume</a>
-
-              <ul className="dropdown-list">
-
-                <li className="dropdown-item">
-                  <a href="#">Clothes Perfume</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Deodorant</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Flower Fragrance</a>
-                </li>
-
-                <li className="dropdown-item">
-                  <a href="#">Air Freshener</a>
-                </li>
-
-              </ul>
-            </li>
+            {
+              MenuData.map((navmenuItem,index) => {
+                return(
+                  <li className="menu-category" key={index}>
+                    <Link to={'/products'} className="menu-title">{navmenuItem.title}</Link>
+                    <ul className="dropdown-list">
+                      {
+                        navmenuItem.subCategories.map((navsubmenu,index) => (
+                          <li className="dropdown-item" key={index}>
+                            <Link to={'/products'}>{navsubmenu.name}</Link>
+                          </li>
+                        ))
+                      }
+                    </ul>
+                  </li>
+                )
+              })
+            }
 
             <li className="menu-category">
               <a href="#" className="menu-title">Blog</a>
             </li>
 
-            <li className="menu-category">
-              <a href="#" className="menu-title">Hot Offers</a>
-            </li>
-
           </ul>
-
         </div>
-
       </nav>
-
-      
     </>
-
   )
 }
 

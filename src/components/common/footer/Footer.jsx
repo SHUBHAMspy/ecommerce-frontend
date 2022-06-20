@@ -226,7 +226,7 @@ const Footer = () => {
 
       <div className="container">
 
-        <img src="./images/payment.png" alt="payment method" className="payment-img"/>
+        <img src="../images/payment.png" alt="payment method" className="payment-img"/>
 
         <p className="copyright">
           Copyright &copy; <a href="#">Ania</a> all rights reserved.

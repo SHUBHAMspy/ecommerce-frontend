@@ -143,7 +143,7 @@
 .product-grid del { color: var(--sonic-silver); }
 
 .loading-style{
-  
+  text-align: center;
   padding: 30px;
 }
 

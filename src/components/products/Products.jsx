@@ -32,7 +32,7 @@ const Products = ({currentPage,getPageCount}) => {
     // updatePage()
     if(!loading) givePageCount()
     if(currentPage !==1) refetch() 
-  }, [currentPage,refetch,loading])
+  }, [currentPage,refetch,loading,givePageCount])
   
   
 

@@ -49,6 +49,7 @@ export const getProduct = gql`
           price
           images {
             data {
+              id
               attributes {
                 url
               }
@@ -56,6 +57,7 @@ export const getProduct = gql`
           }
           category {
             data {
+              id
               attributes {
                 name
               }
@@ -99,6 +101,7 @@ export const getCategories = gql`
         attributes {
           parent {
             data {
+              id
               attributes {
                 name
               }
@@ -107,21 +110,24 @@ export const getCategories = gql`
           name
           categories {
             data {
+              id
               attributes {
                 name
                 products {
                   data {
+                    id
                     attributes {
                       name
                     }
                   }
                 }
               }
-              id
+              
             }
           }
           image {
             data {
+              id
               attributes {
                 url
               }
@@ -137,6 +143,7 @@ export const getCategoryProducts = gql`
   query Category($categoryId: ID,$pagination: PaginationArg) {
     category(id: $categoryId) {
       data {
+        id
         attributes {
           name
           products(pagination: $pagination) {
@@ -148,6 +155,7 @@ export const getCategoryProducts = gql`
                 price
                 category {
                   data {
+                    id
                     attributes {
                       name
                     }
@@ -155,6 +163,7 @@ export const getCategoryProducts = gql`
                 }
                 images {
                   data {
+                    id
                     attributes {
                       url
                     }
@@ -165,7 +174,6 @@ export const getCategoryProducts = gql`
             
           }
         }
-        id
       }
     }
   }

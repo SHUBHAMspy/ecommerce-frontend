@@ -161,4 +161,104 @@ const MenuData = [
   // },
 ]
 
+export const NavbarMenu = [
+  {
+    id:1,
+    title: "Electronics",
+    
+    subCategories: [
+      {
+        name:"Desktop",
+      },
+      {
+        name:"Laptop",
+      },
+      {
+        name:"Camera",
+      },
+      {
+        name:"Tablet",
+      },
+      {
+        name:"Headphone",
+      },
+    ],
+
+    img:'../images/electronics-banner-1.jpg'
+  },
+  {
+    id:2,
+    title: "Men's",
+    
+    subCategories: [
+      {
+        name:"Formal",
+      },
+      {
+        name:"Casual",
+      },
+      {
+        name:"Sports",
+      },
+      {
+        name:"Jacket",
+      },
+      {
+        name:"Sunglasses",
+      },
+      
+    ],
+
+    img:'../images/mens-banner.jpg'
+  },
+  {
+    id:3,
+    title: "Women's",
+    
+    subCategories: [
+      {
+        name:"Formal",
+      },
+      {
+        name:"Casual",
+      },
+      {
+        name:"Perfume",
+      },
+      {
+        name:"Cosmetics",
+      },
+      {
+        name:"Bags",
+      },
+    ],
+
+    img:'../images/womens-banner.jpg'
+  },
+  {
+    id:4,
+    title: "Electronics",
+    
+    subCategories: [
+      {
+        name:"Smart Watch",
+      },
+      {
+        name:"Smart TV",
+      },
+      {
+        name:"Keyboard",
+      },
+      {
+        name:"Mouse",
+      },
+      {
+        name:"Microphone",
+      },
+    ],
+
+    img:'../images/electronics-banner-2.jpg'
+  },
+]
+
 export default MenuData
